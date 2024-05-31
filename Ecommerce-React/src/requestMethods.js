@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/";
+const BASE_URL = "https://ecommerce-app-server-seven.vercel.app/api/";
 
 // Retrieve persisted data from localStorage
 const persistedDataString = localStorage.getItem("persist:root");
