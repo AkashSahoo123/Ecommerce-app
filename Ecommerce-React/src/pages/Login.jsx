@@ -1,5 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
-import {mobile} from "../responsive";
+import { login } from "../redux/apiCalls";
+import { mobile } from "../responsive";
+import { useDispatch, useSelector } from "react-redux";
 
 const Container = styled.div`
   width: 100vw;
@@ -38,7 +41,11 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  height: 40px; /* Set a consistent height */
 `;
+
+// Rest of your code
+
 
 const Button = styled.button`
   width: 40%;
@@ -48,6 +55,10 @@ const Button = styled.button`
   color: white;
   cursor: pointer;
   margin-bottom: 10px;
+  &:disabled {
+    color: #000080;
+    cursor: not-allowed;
+  }
 `;
 
 const Link = styled.a`
@@ -57,17 +68,38 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+const Error = styled.span`
+  color: black;
+`;
+
 const Login = () => {
+
+  const [password, setPassword] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    login(dispatch, { usernameOrEmail, password });
+  };
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
+        <input
+        type="text"
+        value={usernameOrEmail}
+        onChange={(e) => setUsernameOrEmail(e.target.value)}
+        placeholder="Username or Email"
+      />
+          <Input placeholder="password"  type="password"
+            onChange={(e) => setPassword(e.target.value)}/>
+          <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
+          {error && <Error>Something went wrong!!!</Error>}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
+          <Link href="/register"> DON'T YOU HAVE AN ACCOUNT?CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/apiCalls";
 
 const Container = styled.div`
   width: 100vw;
@@ -55,6 +58,14 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("")
+  const dispatch = useDispatch();
+  const handleRegister = (e) => {
+    e.preventDefault();
+    register(dispatch, { username, password ,email});
+  };
   return (
     <Container>
       <Wrapper>
@@ -62,16 +73,21 @@ const Register = () => {
         <Form>
           <Input placeholder="name" />
           <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
+          <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
+
+          <Input placeholder="email" type="email" 
+           onChange={(e) => setEmail(e.target.value)} />
+
+          <Input placeholder="password" type="password"
+            onChange={(e) => setPassword(e.target.value)} />
+
           <Input placeholder="confirm password" />
           
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button onClick={handleRegister}>CREATE</Button>
         </Form>
       </Wrapper>
     </Container>

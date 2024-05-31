@@ -11,9 +11,14 @@ router.post("/create", verifyTokenAndAdmin, async (req, res) => {
     const savedProduct = await newProduct.save();
     res.status(200).json(savedProduct);
   } catch (err) {
-    res.status(500).json(err);
+    if (err.code === 11000) {
+      res.status(400).json({ message: "Product title already exists. Please choose a different title." });
+    } else {
+      res.status(500).json(err);
+    }
   }
 });
+
 
 //UPDATE
 router.put("/product/:id", verifyTokenAndAdmin, async (req, res) => {
@@ -32,7 +37,7 @@ router.put("/product/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //DELETE
-router.delete("/product/:id", verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
     res.status(200).json("Product has been deleted...");
@@ -59,7 +64,7 @@ router.get("/", async (req, res) => {
     let products;
 
     if (qNew) {
-      products = await Product.find().sort({ createdAt: -1 }).limit(1);
+      products = await Product.find().sort({ createdAt: -1 }).limit(5);
     } else if (qCategory) {
       products = await Product.find({
         categories: {
