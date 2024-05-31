@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBkPeWdlhSGRCeUHyrTIO5cyY4bXH5-p1E",
-  authDomain: "shopkeeper-eb411.firebaseapp.com",
-  projectId: "shopkeeper-eb411",
-  storageBucket: "shopkeeper-eb411.appspot.com",
-  messagingSenderId: "961959959633",
-  appId: "1:961959959633:web:a5901d93995e1fbed32c70"
+  apiKey: String(import.meta.env.VITE_FIREBASE_API_KEY),
+  authDomain: String(import.meta.env.VITE_FIREBASE_AUTH_DOMAIN),
+  projectId: String(import.meta.env.VITE_FIREBASE_PROJECT_ID),
+  storageBucket: String(import.meta.env.VITE_FIREBASE_BUCKET_ID),
+  messagingSenderId: String(import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID),
+  appId: String(import.meta.env.VITE_FIREBASE_APP_ID)
 };
 
 // Initialize Firebase

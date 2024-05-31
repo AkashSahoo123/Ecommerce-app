@@ -66,8 +66,11 @@ export default function ProductList() {
         disableSelectionOnClick
         columns={columns}
         getRowId={(row) => row._id}
-        pageSize={8}
+        pageSize={8} // Set the default page size to 8 rows per page
+        rowsPerPageOptions={[8, 16, 24]} // Provide options for page sizes
+        pagination // Enable pagination
         checkboxSelection
+        autoHeight // Automatically adjust the height based on the number of rows
       />
     </div>
   );
