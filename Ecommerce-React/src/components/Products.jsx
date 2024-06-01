@@ -20,8 +20,8 @@ const Products= ({cat,filters,sort}) => {
       try {
         const res = await axios.get(
           cat
-            ? `https://ecommerce-app-server-seven.vercel.app/api/products?category=${cat}`
-            : "https://ecommerce-app-server-seven.vercel.app/api/products"
+            ? `https://ecommerce-app-server-akashs-projects-14840feb.vercel.app/api/products?category=${cat}`
+            : "https://ecommerce-app-server-akashs-projects-14840feb.vercel.app/api/products"
         );
         setProducts(res.data);
       } catch (error) {
