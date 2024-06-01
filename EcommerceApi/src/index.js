@@ -25,6 +25,10 @@ connectDB()
     console.log("MONGO db connection failed !!! ", err);
 })
 app.use(cors());
+
+app.get("/",(req,res)=>{
+    res.json("Hello");
+})
 app.use("/api/users",userRoute)
 app.use("/api/auth",authRoute)
 app.use("/api/products",productRoute)
