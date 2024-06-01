@@ -25,7 +25,10 @@ connectDB()
     console.log("MONGO db connection failed !!! ", err);
 })
 app.use(cors({
-    origin: 'https://ecommerce-app-react-sooty.vercel.app'
+    origin: [
+        'https://ecommerce-app-react-sooty.vercel.app',
+        'https://ecommerce-app-react-sooty.vercel.app/'
+    ]
 }));
 
 app.use("/api/users",userRoute)
