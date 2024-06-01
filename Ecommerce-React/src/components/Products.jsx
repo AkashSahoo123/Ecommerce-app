@@ -20,8 +20,8 @@ const Products= ({cat,filters,sort}) => {
       try {
         const res = await axios.get(
           cat
-            ? `https://localhost:5000/api/products?category=${cat}`
-            : "https://localhost:5000/api/products"
+            ? `https://ecommerce-app-taupe-five.vercel.app/api/products?category=${cat}`
+            : "https://ecommerce-app-taupe-five.vercel.app/api/products"
         );
         setProducts(res.data);
       } catch (error) {
