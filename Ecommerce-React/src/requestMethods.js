@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://ecommerce-app-server-akashs-projects-14840feb.vercel.app/api";
 
 
+
 // Retrieve persisted data from localStorage
 const persistedDataString = localStorage.getItem("persist:root");
 const persistedData = persistedDataString ? JSON.parse(persistedDataString) : null;
