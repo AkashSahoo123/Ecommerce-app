@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://https://ecommerce-app-taupe-five.vercel.app/:5000/api/";
+const BASE_URL = "https://ecommerce-app-taupe-five.vercel.app/:5000/api/";
 
 // Retrieve persisted data from localStorage
 const persistedDataString = localStorage.getItem("persist:root");
