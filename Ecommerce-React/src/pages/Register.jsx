@@ -71,8 +71,6 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
           <Input placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
 
           <Input placeholder="email" type="email" 
@@ -81,7 +79,6 @@ const Register = () => {
           <Input placeholder="password" type="password"
             onChange={(e) => setPassword(e.target.value)} />
 
-          <Input placeholder="confirm password" />
           
           <Agreement>
             By creating an account, I consent to the processing of my personal
